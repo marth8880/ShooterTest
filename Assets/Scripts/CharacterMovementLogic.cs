@@ -5,45 +5,68 @@ using UnityEngine;
 public class CharacterMovementLogic : MonoBehaviour
 {
     public float MovementSpeed = 10.0f;
-    public float JumpForce = 10.0f;
+    public float JumpForce = 100.0f;
+
+    Rigidbody rb;
+
+    float distToGround;
+    bool grounded = false;
     
-    // Start is called before the first frame update
     void Start()
     {
-        
+
+        rb = gameObject.GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frames
     void Update()
     {
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetButton("MoveForward") && grounded == true)
         {
             Move(new Vector3(0, 0, MovementSpeed));
         }
 
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetButton("MoveBackward") && grounded == true)
         {
             Move(new Vector3(0, 0, -MovementSpeed));
         }
 
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetButton("MoveLeft") && grounded == true)
         {
             Move(new Vector3(-MovementSpeed, 0, 0));
         }
 
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetButton("MoveRight") && grounded == true)
         {
             Move(new Vector3(MovementSpeed, 0, 0));
         }
+    }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+    void FixedUpdate()
+    {
+        if (Input.GetButton("Jump") && grounded == true)
         {
-            gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, JumpForce));
+            Jump();
+        }
+    }
+
+    void OnCollisionStay(Collision collision)
+    {
+        grounded = true;
+
+        // Debug-draw all contact points and normals
+        foreach (ContactPoint contact in collision.contacts)
+        {
+            Debug.DrawRay(contact.point, contact.normal, Color.blue);
         }
     }
 
     void Move(Vector3 direction)
     {
         transform.position += direction * Time.deltaTime;
+    }
+
+    void Jump()
+    {
+        rb.AddForce(new Vector3(0, JumpForce, 0));
     }
 }
