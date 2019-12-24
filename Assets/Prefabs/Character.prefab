@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 2800624585223172209}
   - component: {fileID: 2800624585223172214}
   - component: {fileID: 2800624585223172215}
+  - component: {fileID: 7356662493383883740}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -162,6 +163,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MovementSpeed: 25
   JumpForce: 100
+--- !u!114 &7356662493383883740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2800624585223172213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3362c64bab0d3e14faedf1c5547d35f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LookYawSpeedMultiplier: 9
 --- !u!1 &2800624585452103242
 GameObject:
   m_ObjectHideFlags: 0
