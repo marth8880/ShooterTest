@@ -9,12 +9,10 @@ public class CharacterMovementLogic : MonoBehaviour
 
     Rigidbody rb;
 
-    float distToGround;
     bool grounded = false;
     
     void Start()
     {
-
         rb = gameObject.GetComponent<Rigidbody>();
     }
 
@@ -52,12 +50,6 @@ public class CharacterMovementLogic : MonoBehaviour
     void OnCollisionStay(Collision collision)
     {
         grounded = true;
-
-        // Debug-draw all contact points and normals
-        foreach (ContactPoint contact in collision.contacts)
-        {
-            Debug.DrawRay(contact.point, contact.normal, Color.blue);
-        }
     }
 
     void Move(Vector3 direction)
@@ -67,6 +59,7 @@ public class CharacterMovementLogic : MonoBehaviour
 
     void Jump()
     {
+        grounded = false;
         rb.AddForce(new Vector3(0, JumpForce, 0));
     }
 }
