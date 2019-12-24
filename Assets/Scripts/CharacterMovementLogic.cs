@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class CharacterMovementLogic : MonoBehaviour
 {
+    // Entity properties
     public float MovementSpeed = 10.0f;
     public float JumpForce = 100.0f;
 
+    // Tweak values
+
+    // Component refs
     Rigidbody rb;
 
+    // Internal values
     bool grounded = false;
     
     void Start()
@@ -16,7 +21,7 @@ public class CharacterMovementLogic : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (Input.GetButton("MoveForward") && grounded == true)
         {
@@ -37,10 +42,7 @@ public class CharacterMovementLogic : MonoBehaviour
         {
             Move(new Vector3(MovementSpeed, 0, 0));
         }
-    }
 
-    void FixedUpdate()
-    {
         if (Input.GetButton("Jump") && grounded == true)
         {
             Jump();
@@ -54,12 +56,12 @@ public class CharacterMovementLogic : MonoBehaviour
 
     void Move(Vector3 direction)
     {
-        transform.position += direction * Time.deltaTime;
+        rb.AddForce(direction);
     }
 
     void Jump()
     {
         grounded = false;
-        rb.AddForce(new Vector3(0, JumpForce, 0));
+        rb.AddForce(new Vector3(0, JumpForce * rb.drag, 0));
     }
 }
