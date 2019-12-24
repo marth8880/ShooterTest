@@ -56,7 +56,7 @@ public class CharacterMovementLogic : MonoBehaviour
 
     void Move(Vector3 direction)
     {
-        rb.AddForce(direction);
+        rb.AddRelativeForce(direction);
     }
 
     void Jump()
