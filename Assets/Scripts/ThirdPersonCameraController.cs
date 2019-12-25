@@ -12,10 +12,12 @@ public class ThirdPersonCameraController : MonoBehaviour
     public bool InvertPitch = false;
     public GameObject CameraRig;
 
-    int invertPitchSwitch = -1;
-
+    // Tweak values
     const float lookYawSpeedMultiplierBase = 50f;
     const float lookPitchSpeedMultiplierBase = 50f;
+
+    // Internal values
+    int invertPitchSwitch = -1;
     float lookYaw = 0f;
     float lookPitch = 0f;
     
@@ -30,10 +32,11 @@ public class ThirdPersonCameraController : MonoBehaviour
     void Update()
     {
         transform.Rotate(Vector3.up, Input.GetAxis("Mouse X") * LookYawSpeedMultiplier * lookYawSpeedMultiplierBase * Time.deltaTime);
-
         lookYaw += Input.GetAxis("Mouse X") * LookYawSpeedMultiplier * lookYawSpeedMultiplierBase * Time.deltaTime;
+
         lookPitch += Input.GetAxis("Mouse Y") * LookPitchSpeedMultiplier * lookPitchSpeedMultiplierBase * invertPitchSwitch * Time.deltaTime;
         lookPitch = Mathf.Clamp(lookPitch, LookPitchMinimumDegrees, LookPitchMaximumDegrees);
+
         CameraRig.transform.eulerAngles = new Vector3(lookPitch, lookYaw, 0f);
     }
 }
