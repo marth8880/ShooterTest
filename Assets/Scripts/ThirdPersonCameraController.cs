@@ -31,7 +31,9 @@ public class ThirdPersonCameraController : MonoBehaviour
 
     void Update()
     {
+        // Rotate the character object
         transform.Rotate(Vector3.up, Input.GetAxis("Mouse X") * LookYawSpeedMultiplier * lookYawSpeedMultiplierBase * Time.deltaTime);
+        // Rotate the camera arm
         lookYaw += Input.GetAxis("Mouse X") * LookYawSpeedMultiplier * lookYawSpeedMultiplierBase * Time.deltaTime;
 
         lookPitch += Input.GetAxis("Mouse Y") * LookPitchSpeedMultiplier * lookPitchSpeedMultiplierBase * invertPitchSwitch * Time.deltaTime;
