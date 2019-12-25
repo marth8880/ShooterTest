@@ -12,15 +12,15 @@ public class ThirdPersonCameraController : MonoBehaviour
     public bool InvertPitch = false;
     public GameObject CameraRig;
 
-    float lookPitchMin = 0f;
-    float lookPitchMax = 0f;
     int invertPitchSwitch = -1;
+
+    const float lookYawSpeedMultiplierBase = 50f;
+    const float lookPitchSpeedMultiplierBase = 50f;
+    float lookYaw = 0f;
+    float lookPitch = 0f;
     
     void Start()
     {
-        lookPitchMin = LookPitchMinimumDegrees / 360;
-        lookPitchMax = LookPitchMaximumDegrees / 360;
-
         if (InvertPitch)
         {
             invertPitchSwitch = 1;
@@ -29,11 +29,11 @@ public class ThirdPersonCameraController : MonoBehaviour
 
     void Update()
     {
-        transform.Rotate(Vector3.up, Input.GetAxis("Mouse X") * LookYawSpeedMultiplier);
-        Debug.Log("CameraRig.transform.rotation.x = " + CameraRig.transform.localRotation.x);
-        if (CameraRig.transform.localRotation.x > lookPitchMin && CameraRig.transform.localRotation.x < lookPitchMax)
-        {
-            CameraRig.transform.Rotate(Vector3.right, Input.GetAxis("Mouse Y") * LookPitchSpeedMultiplier * invertPitchSwitch);
-        }
+        transform.Rotate(Vector3.up, Input.GetAxis("Mouse X") * LookYawSpeedMultiplier * lookYawSpeedMultiplierBase * Time.deltaTime);
+
+        lookYaw += Input.GetAxis("Mouse X") * LookYawSpeedMultiplier * lookYawSpeedMultiplierBase * Time.deltaTime;
+        lookPitch += Input.GetAxis("Mouse Y") * LookPitchSpeedMultiplier * lookPitchSpeedMultiplierBase * invertPitchSwitch * Time.deltaTime;
+        lookPitch = Mathf.Clamp(lookPitch, LookPitchMinimumDegrees, LookPitchMaximumDegrees);
+        CameraRig.transform.eulerAngles = new Vector3(lookPitch, lookYaw, 0f);
     }
 }
