@@ -319,6 +319,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WeaponAttachPoint: {fileID: 6108285189400945369}
+  equippedWeapon: {fileID: 3335669266156104621, guid: bd6c9b19dd9380b46a8372008489d14d,
+    type: 3}
 --- !u!1 &2800624585452103242
 GameObject:
   m_ObjectHideFlags: 0
