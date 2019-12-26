@@ -33,7 +33,7 @@ public class WeaponController : MonoBehaviour
         {
             if (weaponInstance != null)
             {
-                weaponInstance.Fire();
+                weaponInstance.Fire(gameObject);
             }
         }
     }

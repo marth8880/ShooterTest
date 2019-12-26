@@ -6,6 +6,10 @@ public class Ordnance : MonoBehaviour
 {
     // Entity properties
     public float Lifetime = 10f;
+    public float Damage = 0f;
+
+    [HideInInspector]
+    public GameObject owner;
 
     // Component refs
     Rigidbody rb;
@@ -31,7 +35,29 @@ public class Ordnance : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        Expire();
+        if (collision.gameObject != owner)
+        {
+            DoDamage(collision.gameObject);
+        }
+        else
+        {
+            Expire();
+        }
+    }
+
+    void DoDamage(GameObject victim)
+    {
+        Health healthComponent = victim.GetComponent<Health>();
+        if (healthComponent != null)
+        {
+            healthComponent.AddHealth(-Damage);
+            Explode();
+        }
+    }
+
+    void Explode()
+    {
+        Destroy(gameObject);
     }
 
     void Expire()

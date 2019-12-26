@@ -9,6 +9,9 @@ public class Weapon : MonoBehaviour
     public Ordnance OrdnanceType;
     public float ShotDelay = 0.2f;
 
+    [HideInInspector]
+    public GameObject owner;
+
     void Start()
     {
         
@@ -19,8 +22,9 @@ public class Weapon : MonoBehaviour
         
     }
 
-    public void Fire()
+    public void Fire(GameObject owner)
     {
         Ordnance ordnanceInstance = Instantiate(OrdnanceType, FirePoint.transform.position, FirePoint.transform.rotation);
+        ordnanceInstance.owner = owner;
     }
 }
