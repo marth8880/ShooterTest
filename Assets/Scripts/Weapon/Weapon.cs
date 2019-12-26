@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    // Entity properties
     public GameObject FirePoint;
+    public Ordnance OrdnanceType;
     public float ShotDelay = 0.2f;
 
     void Start()
@@ -19,6 +21,6 @@ public class Weapon : MonoBehaviour
 
     public void Fire()
     {
-        Debug.Log("Weapon: Fire");
+        Ordnance ordnanceInstance = Instantiate(OrdnanceType, FirePoint.transform.position, FirePoint.transform.rotation);
     }
 }

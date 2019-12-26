@@ -31,9 +31,9 @@ public class WeaponController : MonoBehaviour
     {
         if (Input.GetButtonDown("FireWeapon"))
         {
-            if (equippedWeapon != null)
+            if (weaponInstance != null)
             {
-                equippedWeapon.Fire();
+                weaponInstance.Fire();
             }
         }
     }
