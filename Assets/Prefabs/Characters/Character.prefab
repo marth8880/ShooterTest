@@ -307,6 +307,7 @@ MonoBehaviour:
   LookPitchMaximumDegrees: 75
   InvertPitch: 0
   CameraRig: {fileID: 1106035511670691816}
+  WeaponAttachPoint: {fileID: 6108285189400945369}
 --- !u!114 &6942892651657409447
 MonoBehaviour:
   m_ObjectHideFlags: 0

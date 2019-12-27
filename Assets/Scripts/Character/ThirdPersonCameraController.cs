@@ -11,6 +11,7 @@ public class ThirdPersonCameraController : MonoBehaviour
     public float LookPitchMaximumDegrees = 90f;
     public bool InvertPitch = false;
     public GameObject CameraRig;
+    public GameObject WeaponAttachPoint;
 
     // Entity references
     GameObject gameStateControllerObject;
@@ -48,6 +49,7 @@ public class ThirdPersonCameraController : MonoBehaviour
             lookPitch += Input.GetAxis("Mouse Y") * LookPitchSpeedMultiplier * lookPitchSpeedMultiplierBase * invertPitchSwitch * Time.deltaTime;
             lookPitch = Mathf.Clamp(lookPitch, LookPitchMinimumDegrees, LookPitchMaximumDegrees);
 
+            WeaponAttachPoint.transform.eulerAngles = new Vector3(lookPitch, WeaponAttachPoint.transform.eulerAngles.y, 0f);
             CameraRig.transform.eulerAngles = new Vector3(lookPitch, lookYaw, 0f);
         }
     }
