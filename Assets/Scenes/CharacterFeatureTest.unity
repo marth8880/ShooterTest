@@ -3669,11 +3669,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character
       objectReference: {fileID: 0}
-    - target: {fileID: 6942892651657409447, guid: a7a06d18333ba274b8c22876683fb359,
+    - target: {fileID: 4884470644347610303, guid: a7a06d18333ba274b8c22876683fb359,
         type: 3}
-      propertyPath: equippedWeapon
+      propertyPath: CanvasPrefab
       value: 
-      objectReference: {fileID: 8298337490405054970, guid: bd6c9b19dd9380b46a8372008489d14d,
+      objectReference: {fileID: 6980107159174697899, guid: c280d989dacb4264d8386680a12a6e5b,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7a06d18333ba274b8c22876683fb359, type: 3}
