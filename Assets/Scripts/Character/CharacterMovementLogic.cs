@@ -29,7 +29,7 @@ public class CharacterMovementLogic : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!gameStateController.isDebugMode)
+        if (!gameStateController.isDebugMode && gameStateController.CurrentGameState == GameStateController.GameState.Gameplay)
         {
             if (Input.GetButton("MoveForward") && grounded == true)
             {

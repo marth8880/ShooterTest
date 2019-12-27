@@ -29,11 +29,14 @@ public class WeaponController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("FireWeapon"))
+        if (!gameStateController.isDebugMode && gameStateController.CurrentGameState == GameStateController.GameState.Gameplay)
         {
-            if (weaponInstance != null)
+            if (Input.GetButtonDown("FireWeapon"))
             {
-                weaponInstance.Fire(gameObject);
+                if (weaponInstance != null)
+                {
+                    weaponInstance.Fire(gameObject);
+                }
             }
         }
     }

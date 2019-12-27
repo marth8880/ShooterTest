@@ -39,7 +39,7 @@ public class ThirdPersonCameraController : MonoBehaviour
 
     void Update()
     {
-        if (!gameStateController.isDebugMode)
+        if (!gameStateController.isDebugMode && gameStateController.CurrentGameState == GameStateController.GameState.Gameplay)
         {
             // Rotate the character object
             transform.Rotate(Vector3.up, Input.GetAxis("Mouse X") * LookYawSpeedMultiplier * lookYawSpeedMultiplierBase * Time.deltaTime);

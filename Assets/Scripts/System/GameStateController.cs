@@ -7,6 +7,12 @@ public class GameStateController : MonoBehaviour
     public GameState CurrentGameState;
     public bool isDebugMode = false;
 
+    public delegate void OnGameStart();
+    public static event OnGameStart onGameStart;
+
+    public delegate void OnGameStateChange(GameState gameState);
+    public static event OnGameStateChange onGameStateChange;
+
     public enum GameState
     {
         Gameplay,
@@ -15,6 +21,7 @@ public class GameStateController : MonoBehaviour
 
     void Start()
     {
+        RaiseOnGameStart();
         ChangeGameState(GameState.Gameplay);
     }
 
@@ -39,6 +46,16 @@ public class GameStateController : MonoBehaviour
                 EnterDebugMode();
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            ChangeGameState(GameState.Gameplay);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            ChangeGameState(GameState.Interface);
+        }
     }
 
     public void ChangeGameState(GameState newState)
@@ -60,6 +77,8 @@ public class GameStateController : MonoBehaviour
                 Cursor.lockState = CursorLockMode.Confined;
                 break;
         }
+
+        RaiseOnGameStateChange(newState);
     }
 
     void EnterDebugMode()
@@ -89,5 +108,15 @@ public class GameStateController : MonoBehaviour
                 Cursor.lockState = CursorLockMode.Confined;
                 break;
         }
+    }
+
+    void RaiseOnGameStart()
+    {
+        onGameStart?.Invoke();
+    }
+
+    void RaiseOnGameStateChange(GameState gameState)
+    {
+        onGameStateChange?.Invoke(gameState);
     }
 }
