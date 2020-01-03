@@ -12,9 +12,12 @@ public class CharacterMovementLogic : MonoBehaviour
 
     // Component refs
     Rigidbody rb;
+    Collider coll;
 
     // Internal values
     bool grounded = false;
+    float distToGround = 0f;
+    const float distToGroundOffset = 0.1f;
 
     GameObject gameStateControllerObject;
     GameStateController gameStateController;
@@ -25,6 +28,9 @@ public class CharacterMovementLogic : MonoBehaviour
         gameStateController = gameStateControllerObject.GetComponent<GameStateController>();
 
         rb = gameObject.GetComponent<Rigidbody>();
+        coll = gameObject.GetComponent<Collider>();
+
+        distToGround = coll.bounds.extents.y + distToGroundOffset;
     }
 
     void FixedUpdate()
@@ -60,8 +66,19 @@ public class CharacterMovementLogic : MonoBehaviour
 
     void OnCollisionStay(Collision collision)
     {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            //Debug.Log("Character is grounded");
+            //grounded = true;
+        }
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("Character is grounded");
         grounded = true;
     }
+
 
     void Move(Vector3 direction)
     {
@@ -70,7 +87,15 @@ public class CharacterMovementLogic : MonoBehaviour
 
     void Jump()
     {
-        grounded = false;
-        rb.AddForce(new Vector3(0, JumpForce * rb.drag, 0));
+        Ray ray = new Ray(transform.position, Vector3.down);
+        RaycastHit hit;
+
+        if (coll.Raycast(ray, out hit, distToGround))
+        {
+            Debug.Log("Jump");
+            Debug.Log("Character is not grounded");
+            grounded = false;
+            rb.AddRelativeForce(new Vector3(0, JumpForce * rb.drag, 0));
+        }
     }
 }

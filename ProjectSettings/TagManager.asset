@@ -7,6 +7,7 @@ TagManager:
   - CameraRig
   - WeaponAttach
   - GameStateController
+  - Ground
   layers:
   - Default
   - TransparentFX
