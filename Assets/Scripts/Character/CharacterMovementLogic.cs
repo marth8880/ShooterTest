@@ -7,6 +7,7 @@ public class CharacterMovementLogic : MonoBehaviour
     // Entity properties
     public float MovementSpeed = 10.0f;
     public float JumpForce = 100.0f;
+    public float AirMovementSpeedMultiplier = .5f;
 
     // Tweak values
 
@@ -18,6 +19,7 @@ public class CharacterMovementLogic : MonoBehaviour
     bool grounded = false;
     float distToGround = 0f;
     const float distToGroundOffset = 0.1f;
+    float airMovementSpeed = 0f;
 
     GameObject gameStateControllerObject;
     GameStateController gameStateController;
@@ -31,45 +33,49 @@ public class CharacterMovementLogic : MonoBehaviour
         coll = gameObject.GetComponent<Collider>();
 
         distToGround = coll.bounds.extents.y + distToGroundOffset;
+        airMovementSpeed = MovementSpeed * AirMovementSpeedMultiplier;
     }
 
     void FixedUpdate()
     {
         if (!gameStateController.isDebugMode && gameStateController.CurrentGameState == GameStateController.GameState.Gameplay)
         {
-            if (Input.GetButton("MoveForward") && grounded == true)
+            if (Input.GetButton("MoveForward"))
             {
-                Move(new Vector3(0, 0, MovementSpeed));
+                if (grounded)
+                    Move(new Vector3(0, 0, MovementSpeed));
+                else
+                    Move(new Vector3(0, 0, airMovementSpeed));
             }
 
-            if (Input.GetButton("MoveBackward") && grounded == true)
+            if (Input.GetButton("MoveBackward"))
             {
-                Move(new Vector3(0, 0, -MovementSpeed));
+                if (grounded)
+                    Move(new Vector3(0, 0, -MovementSpeed));
+                else
+                    Move(new Vector3(0, 0, -airMovementSpeed));
             }
 
-            if (Input.GetButton("MoveLeft") && grounded == true)
+            if (Input.GetButton("MoveLeft"))
             {
-                Move(new Vector3(-MovementSpeed, 0, 0));
+                if (grounded)
+                    Move(new Vector3(-MovementSpeed, 0, 0));
+                else
+                    Move(new Vector3(-airMovementSpeed, 0, 0));
             }
 
-            if (Input.GetButton("MoveRight") && grounded == true)
+            if (Input.GetButton("MoveRight"))
             {
-                Move(new Vector3(MovementSpeed, 0, 0));
+                if (grounded)
+                    Move(new Vector3(MovementSpeed, 0, 0));
+                else
+                    Move(new Vector3(airMovementSpeed, 0, 0));
             }
 
-            if (Input.GetButton("Jump") && grounded == true)
+            if (Input.GetButtonDown("Jump") && grounded == true)
             {
                 Jump();
             }
-        }
-    }
-
-    void OnCollisionStay(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            //Debug.Log("Character is grounded");
-            //grounded = true;
         }
     }
 
@@ -90,11 +96,10 @@ public class CharacterMovementLogic : MonoBehaviour
         Ray ray = new Ray(transform.position, Vector3.down);
         RaycastHit hit;
 
-        if (coll.Raycast(ray, out hit, distToGround))
+        if (Physics.Raycast(ray, out hit, distToGround))
         {
-            Debug.Log("Jump");
-            Debug.Log("Character is not grounded");
             grounded = false;
+            
             rb.AddRelativeForce(new Vector3(0, JumpForce * rb.drag, 0));
         }
     }
