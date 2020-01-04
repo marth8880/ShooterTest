@@ -53,8 +53,9 @@ public class Ordnance : MonoBehaviour
         if (healthComponent != null)
         {
             healthComponent.AddHealth(-Damage);
-            Explode();
         }
+
+        Explode();
     }
 
     void Explode()
