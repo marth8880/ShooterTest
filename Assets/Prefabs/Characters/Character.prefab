@@ -221,6 +221,7 @@ GameObject:
   - component: {fileID: 7356662493383883740}
   - component: {fileID: 6942892651657409447}
   - component: {fileID: 4884470644347610303}
+  - component: {fileID: 290898546222146808}
   - component: {fileID: 6463376299462450269}
   m_Layer: 0
   m_Name: Character
@@ -339,6 +340,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CrosshairPrefab: {fileID: 4361523583455507003, guid: c280d989dacb4264d8386680a12a6e5b,
     type: 3}
+--- !u!114 &290898546222146808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2800624585223172213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8868e4d991d180d47976e8e9119ca311, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxHealth: 100
 --- !u!114 &6463376299462450269
 MonoBehaviour:
   m_ObjectHideFlags: 0

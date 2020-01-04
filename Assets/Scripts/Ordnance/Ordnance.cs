@@ -62,7 +62,8 @@ public class Ordnance : MonoBehaviour
     {
         if (ExplosionPrefab != null)
         {
-            Instantiate(ExplosionPrefab, transform.position, transform.rotation);
+            Explosion explosion = Instantiate(ExplosionPrefab, transform.position, transform.rotation);
+            explosion.owner = owner;
         }
         Destroy(gameObject);
     }

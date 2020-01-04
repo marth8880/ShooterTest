@@ -6,9 +6,13 @@ public class Explosion : MonoBehaviour
 {
     // Entity properties
     public ParticleSystem ParticleEffect;
-    public Collider Trigger;
     public float Damage = 0f;
     public float Lifetime = .1f;
+    public float Radius = 5f;
+    public bool AffectOwner = false;
+
+    [HideInInspector]
+    public GameObject owner;
 
     // Component refs
 
@@ -23,7 +27,7 @@ public class Explosion : MonoBehaviour
             Instantiate(ParticleEffect, transform.position, transform.rotation);
         }
 
-        startExpire = true;
+        DoDamage();
     }
 
     void Update()
@@ -38,21 +42,31 @@ public class Explosion : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other)
-    {
-        DoDamage(other.gameObject);
-    }
-
-    void DoDamage(GameObject victim)
+    void DoDamage()
     {
         Debug.Log("Explosion: DoDamage");
-        Health healthComponent = victim.GetComponent<Health>();
-        if (healthComponent != null)
+
+        Collider[] objectsInRange = Physics.OverlapSphere(transform.position, Radius);
+        foreach (Collider collider in objectsInRange)
         {
-            healthComponent.AddHealth(-Damage);
+            Health healthComponent = collider.GetComponent<Health>();
+            if (healthComponent != null)
+            {
+                if (collider.gameObject != owner.gameObject)
+                {
+                    healthComponent.AddHealth(-Damage);
+                }
+                else
+                {
+                    if (AffectOwner)
+                    {
+                        healthComponent.AddHealth(-Damage);
+                    }
+                }
+            }
         }
 
-
+        startExpire = true;
     }
 
     void Expire()
