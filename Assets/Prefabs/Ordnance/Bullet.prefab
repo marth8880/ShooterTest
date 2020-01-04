@@ -139,6 +139,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Lifetime: 3
   Damage: 10
+  Velocity: 100
+  ExplosionPrefab: {fileID: 9125077061470620494, guid: bcbf0582b70dec248949b58fc7cc3cb0,
+    type: 3}
   owner: {fileID: 0}
 --- !u!54 &-4389914211092882995
 Rigidbody:

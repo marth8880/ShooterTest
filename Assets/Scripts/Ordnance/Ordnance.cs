@@ -7,6 +7,8 @@ public class Ordnance : MonoBehaviour
     // Entity properties
     public float Lifetime = 10f;
     public float Damage = 0f;
+    public float Velocity = 100f;
+    public Explosion ExplosionPrefab;
 
     [HideInInspector]
     public GameObject owner;
@@ -20,7 +22,7 @@ public class Ordnance : MonoBehaviour
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
-        rb.AddRelativeForce(new Vector3(0, 0, 100));
+        rb.AddRelativeForce(new Vector3(0, 0, Velocity));
     }
 
     void Update()
@@ -57,6 +59,10 @@ public class Ordnance : MonoBehaviour
 
     void Explode()
     {
+        if (ExplosionPrefab != null)
+        {
+            Instantiate(ExplosionPrefab, transform.position, transform.rotation);
+        }
         Destroy(gameObject);
     }
 
