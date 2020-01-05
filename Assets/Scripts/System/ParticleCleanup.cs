@@ -18,7 +18,7 @@ public class ParticleCleanup : MonoBehaviour
         foreach (GameObject particle in ParticleSystems)
         {
             ParticleSystem pfxComponent = particle.GetComponent<ParticleSystem>();
-            durations.Add(pfxComponent.main.duration);
+            durations.Add(pfxComponent.main.startLifetime.constantMax * pfxComponent.main.startLifetimeMultiplier);
         }
 
         particleLifetime = durations.Max();
