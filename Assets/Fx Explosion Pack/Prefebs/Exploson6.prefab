@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 741004066245a714390df3757b77251a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lihgt: {fileID: 10800000}
+  _light: {fileID: 10800000}
   Delay: 0.5
   Down: 3
 --- !u!1 &100002
@@ -4860,7 +4860,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 400004}
-  - component: {fileID: 11400002}
+  - component: {fileID: 2936224971216455035}
   m_Layer: 0
   m_Name: Exploson6
   m_TagString: Untagged
@@ -4885,7 +4885,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &11400002
+--- !u!114 &2936224971216455035
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4894,9 +4894,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 100004}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88b9b11ad00a01e44aa1c4d1ab3954eb, type: 3}
+  m_Script: {fileID: 11500000, guid: e1602feee34d0a749bd4c6b4eb865fe5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ParticleSystems:
+  - {fileID: 100006}
+  - {fileID: 100002}
 --- !u!1 &100006
 GameObject:
   m_ObjectHideFlags: 0

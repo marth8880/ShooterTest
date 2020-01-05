@@ -5,7 +5,7 @@ using UnityEngine;
 public class Explosion : MonoBehaviour
 {
     // Entity properties
-    public ParticleSystem ParticleEffect;
+    public GameObject ParticleEffect;
     public float Damage = 0f;
     public float Lifetime = .1f;
     public float Radius = 5f;
