@@ -60,7 +60,7 @@ public class ThirdPersonCameraController : MonoBehaviour
             WeaponAttachPoint.transform.eulerAngles = new Vector3(lookPitch, WeaponAttachPoint.transform.eulerAngles.y, 0f);
             CameraRig.transform.eulerAngles = new Vector3(lookPitch, lookYaw, 0f);
 
-            if (Input.GetButton("AimWeapon"))
+            if (Input.GetButton("ZoomWeapon"))
             {
                 cam.fieldOfView = Mathf.Lerp(AimFieldOfView, ZoomFieldOfView, curZoomTime);
                 if (curZoomTime <= 1)
