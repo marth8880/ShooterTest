@@ -76,7 +76,6 @@ public class ThirdPersonCameraController : MonoBehaviour
                     curZoomTime -= Time.deltaTime * ZoomSpeedMultiplier;
                 }
             }
-            Debug.Log("curZoomTime = " + curZoomTime);
         }
     }
 }
