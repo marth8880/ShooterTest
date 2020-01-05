@@ -314,6 +314,7 @@ MonoBehaviour:
   WeaponAttachPoint: {fileID: 6108285189400945369}
   AimFieldOfView: 90
   ZoomFieldOfView: 55
+  ZoomSpeedMultiplier: 3
 --- !u!114 &6942892651657409447
 MonoBehaviour:
   m_ObjectHideFlags: 0

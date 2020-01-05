@@ -15,6 +15,7 @@ public class ThirdPersonCameraController : MonoBehaviour
     public GameObject WeaponAttachPoint;
     public float AimFieldOfView = 90f;
     public float ZoomFieldOfView = 30f;
+    public float ZoomSpeedMultiplier = 2f;
 
     // Entity references
     GameObject gameStateControllerObject;
@@ -29,6 +30,7 @@ public class ThirdPersonCameraController : MonoBehaviour
     int invertPitchSwitch = -1;
     float lookYaw = 0f;
     float lookPitch = 0f;
+    float curZoomTime = 0f;
 
     void Start()
     {
@@ -60,12 +62,21 @@ public class ThirdPersonCameraController : MonoBehaviour
 
             if (Input.GetButton("AimWeapon"))
             {
-                cam.fieldOfView = ZoomFieldOfView;
+                cam.fieldOfView = Mathf.Lerp(AimFieldOfView, ZoomFieldOfView, curZoomTime);
+                if (curZoomTime <= 1)
+                {
+                    curZoomTime += Time.deltaTime * ZoomSpeedMultiplier;
+                }
             }
             else
             {
-                cam.fieldOfView = AimFieldOfView;
+                cam.fieldOfView = Mathf.Lerp(AimFieldOfView, ZoomFieldOfView, curZoomTime);
+                if (curZoomTime >= 0)
+                {
+                    curZoomTime -= Time.deltaTime * ZoomSpeedMultiplier;
+                }
             }
+            Debug.Log("curZoomTime = " + curZoomTime);
         }
     }
 }
