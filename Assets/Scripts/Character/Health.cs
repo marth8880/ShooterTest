@@ -5,6 +5,7 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
 	public float MaxHealth = 100f;
+	public Explosion ExplosionPrefab;
 	
 	float CurHealth = 0f;
 
@@ -27,7 +28,14 @@ public class Health : MonoBehaviour
 
 		if (CurHealth <= 0)
 		{
-			Destroy(gameObject);
+			if (ExplosionPrefab != null)
+			{
+				OrdnanceCommon.Explode(gameObject, gameObject, ExplosionPrefab);
+			}
+			else
+			{
+				Destroy(gameObject);
+			}
 		}
 	}
 }
