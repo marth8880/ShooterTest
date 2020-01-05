@@ -52,6 +52,7 @@ public class Explosion : MonoBehaviour
             Health healthComponent = collider.GetComponent<Health>();
             if (healthComponent != null)
             {
+                // Don't affect the owner unless specified
                 if (collider.gameObject != owner.gameObject)
                 {
                     healthComponent.AddHealth(-Damage);
