@@ -8,7 +8,7 @@ public class WeaponController : MonoBehaviour
     public GameObject WeaponAttachPoint;
 
     // Entity references
-    GameObject gameStateControllerObject;
+    GameObject gameControllerObject;
     GameStateController gameStateController;
 
     // Internal values
@@ -18,8 +18,8 @@ public class WeaponController : MonoBehaviour
 
     void Start()
     {
-        gameStateControllerObject = GameObject.FindGameObjectWithTag("GameStateController");
-        gameStateController = gameStateControllerObject.GetComponent<GameStateController>();
+        gameControllerObject = GameObject.FindGameObjectWithTag("GameController");
+        gameStateController = gameControllerObject.GetComponent<GameStateController>();
 
         weaponInstance = Instantiate(equippedWeapon);
         weaponInstance.transform.parent = WeaponAttachPoint.transform;

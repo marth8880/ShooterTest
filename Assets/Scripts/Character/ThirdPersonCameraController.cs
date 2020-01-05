@@ -18,7 +18,7 @@ public class ThirdPersonCameraController : MonoBehaviour
     public float ZoomSpeedMultiplier = 2f;
 
     // Entity references
-    GameObject gameStateControllerObject;
+    GameObject gameControllerObject;
     GameStateController gameStateController;
     Camera cam;
 
@@ -34,8 +34,8 @@ public class ThirdPersonCameraController : MonoBehaviour
 
     void Start()
     {
-        gameStateControllerObject = GameObject.FindGameObjectWithTag("GameStateController");
-        gameStateController = gameStateControllerObject.GetComponent<GameStateController>();
+        gameControllerObject = GameObject.FindGameObjectWithTag("GameController");
+        gameStateController = gameControllerObject.GetComponent<GameStateController>();
 
         cam = CameraObject.GetComponent<Camera>();
 

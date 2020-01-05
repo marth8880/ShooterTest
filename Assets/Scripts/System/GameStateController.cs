@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class GameStateController : MonoBehaviour
 {
-    public GameState CurrentGameState;
+    public GameState CurrentGameState = GameState.Gameplay;
+
+    [HideInInspector]
     public bool isDebugMode = false;
 
     public delegate void OnGameStart();
@@ -22,7 +24,7 @@ public class GameStateController : MonoBehaviour
     void Start()
     {
         RaiseOnGameStart();
-        ChangeGameState(GameState.Gameplay);
+        ChangeGameState(CurrentGameState);
     }
 
     void Update()
@@ -79,6 +81,19 @@ public class GameStateController : MonoBehaviour
         }
 
         RaiseOnGameStateChange(newState);
+    }
+
+    public void ChangeDebugMode(bool enableDebugMode)
+    {
+        switch (enableDebugMode)
+        {
+            case true:
+                EnterDebugMode();
+                break;
+            case false:
+                ExitDebugMode();
+                break;
+        }
     }
 
     void EnterDebugMode()

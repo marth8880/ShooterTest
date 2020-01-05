@@ -6,15 +6,15 @@ public class HUDController : MonoBehaviour
 {
     // Entity references
     public Crosshair CrosshairPrefab;
-    GameObject gameStateControllerObject;
+    GameObject gameControllerObject;
     GameStateController gameStateController;
 
     Crosshair crosshairInstance;
 
     void Start()
     {
-        gameStateControllerObject = GameObject.FindGameObjectWithTag("GameStateController");
-        gameStateController = gameStateControllerObject.GetComponent<GameStateController>();
+        gameControllerObject = GameObject.FindGameObjectWithTag("GameController");
+        gameStateController = gameControllerObject.GetComponent<GameStateController>();
 
         crosshairInstance = Instantiate(CrosshairPrefab);
 

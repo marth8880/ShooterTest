@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6804964418300138193}
   - component: {fileID: 5779856149342462266}
+  - component: {fileID: 2748282550518286832}
   m_Layer: 0
-  m_Name: GameStateController
-  m_TagString: GameStateController
+  m_Name: GameController
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45,3 +46,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentGameState: 0
   isDebugMode: 0
+--- !u!114 &2748282550518286832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6828754244634958656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b22d801c9db6634ca22d99049672f5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerPrefab: {fileID: 2800624585223172213, guid: a7a06d18333ba274b8c22876683fb359,
+    type: 3}
+  PlayerSpawnPoint: {fileID: 0}

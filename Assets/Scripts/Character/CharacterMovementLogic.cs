@@ -21,13 +21,13 @@ public class CharacterMovementLogic : MonoBehaviour
     const float distToGroundOffset = 0.1f;
     float airMovementSpeed = 0f;
 
-    GameObject gameStateControllerObject;
+    GameObject gameControllerObject;
     GameStateController gameStateController;
     
     void Start()
     {
-        gameStateControllerObject = GameObject.FindGameObjectWithTag("GameStateController");
-        gameStateController = gameStateControllerObject.GetComponent<GameStateController>();
+        gameControllerObject = GameObject.FindGameObjectWithTag("GameController");
+        gameStateController = gameControllerObject.GetComponent<GameStateController>();
 
         rb = gameObject.GetComponent<Rigidbody>();
         coll = gameObject.GetComponent<Collider>();
