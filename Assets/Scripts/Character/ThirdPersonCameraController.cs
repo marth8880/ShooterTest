@@ -10,12 +10,16 @@ public class ThirdPersonCameraController : MonoBehaviour
     public float LookPitchMinimumDegrees = -90f;
     public float LookPitchMaximumDegrees = 90f;
     public bool InvertPitch = false;
+    public GameObject CameraObject;
     public GameObject CameraRig;
     public GameObject WeaponAttachPoint;
+    public float AimFieldOfView = 90f;
+    public float ZoomFieldOfView = 30f;
 
     // Entity references
     GameObject gameStateControllerObject;
     GameStateController gameStateController;
+    Camera cam;
 
     // Tweak values
     const float lookYawSpeedMultiplierBase = 50f;
@@ -30,6 +34,8 @@ public class ThirdPersonCameraController : MonoBehaviour
     {
         gameStateControllerObject = GameObject.FindGameObjectWithTag("GameStateController");
         gameStateController = gameStateControllerObject.GetComponent<GameStateController>();
+
+        cam = CameraObject.GetComponent<Camera>();
 
         if (InvertPitch)
         {
@@ -51,6 +57,15 @@ public class ThirdPersonCameraController : MonoBehaviour
 
             WeaponAttachPoint.transform.eulerAngles = new Vector3(lookPitch, WeaponAttachPoint.transform.eulerAngles.y, 0f);
             CameraRig.transform.eulerAngles = new Vector3(lookPitch, lookYaw, 0f);
+
+            if (Input.GetButton("AimWeapon"))
+            {
+                cam.fieldOfView = ZoomFieldOfView;
+            }
+            else
+            {
+                cam.fieldOfView = AimFieldOfView;
+            }
         }
     }
 }

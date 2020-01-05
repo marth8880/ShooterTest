@@ -309,8 +309,11 @@ MonoBehaviour:
   LookPitchMinimumDegrees: -75
   LookPitchMaximumDegrees: 75
   InvertPitch: 0
+  CameraObject: {fileID: 2800624583987249444}
   CameraRig: {fileID: 1106035511670691816}
   WeaponAttachPoint: {fileID: 6108285189400945369}
+  AimFieldOfView: 90
+  ZoomFieldOfView: 55
 --- !u!114 &6942892651657409447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -353,6 +356,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 100
+  ExplosionPrefab: {fileID: 0}
 --- !u!114 &6463376299462450269
 MonoBehaviour:
   m_ObjectHideFlags: 0
