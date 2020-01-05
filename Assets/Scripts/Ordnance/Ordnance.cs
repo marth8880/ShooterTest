@@ -55,17 +55,14 @@ public class Ordnance : MonoBehaviour
             healthComponent.AddHealth(-Damage);
         }
 
-        Explode();
-    }
-
-    void Explode()
-    {
         if (ExplosionPrefab != null)
         {
-            Explosion explosion = Instantiate(ExplosionPrefab, transform.position, transform.rotation);
-            explosion.owner = owner;
+            OrdnanceCommon.Explode(gameObject, owner, ExplosionPrefab);
         }
-        Destroy(gameObject);
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     void Expire()
